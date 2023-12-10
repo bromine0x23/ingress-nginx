@@ -1,4 +1,4 @@
-FROM golang:buster as build
+FROM golang:1.21.5 as build
 
 WORKDIR /go/src/greeter-server
 
