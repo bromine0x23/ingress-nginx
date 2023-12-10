@@ -159,10 +159,6 @@
 - [should allow headers for cors](https://github.com/kubernetes/ingress-nginx/tree/main/test/e2e/annotations/cors.go#L124)
 - [should expose headers for cors](https://github.com/kubernetes/ingress-nginx/tree/main/test/e2e/annotations/cors.go#L140)
 
-### [influxdb-*](https://github.com/kubernetes/ingress-nginx/tree/main/test/e2e/annotations/influxdb.go#L39)
-
-- [should send the request metric to the influxdb server](https://github.com/kubernetes/ingress-nginx/tree/main/test/e2e/annotations/influxdb.go#L48)
-
 ### [Annotation - limit-connections](https://github.com/kubernetes/ingress-nginx/tree/main/test/e2e/annotations/limitconnections.go#L31)
 
 - [should limit-connections](https://github.com/kubernetes/ingress-nginx/tree/main/test/e2e/annotations/limitconnections.go#L38)

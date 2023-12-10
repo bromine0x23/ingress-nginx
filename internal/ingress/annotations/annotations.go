@@ -42,7 +42,6 @@ import (
 	"k8s.io/ingress-nginx/internal/ingress/annotations/fastcgi"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/globalratelimit"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/http2pushpreload"
-	"k8s.io/ingress-nginx/internal/ingress/annotations/influxdb"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/ipwhitelist"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/loadbalancing"
 	"k8s.io/ingress-nginx/internal/ingress/annotations/log"
@@ -112,7 +111,6 @@ type Ingress struct {
 	XForwardedPrefix   string
 	SSLCipher          sslcipher.Config
 	Logs               log.Config
-	InfluxDB           influxdb.Config
 	ModSecurity        modsecurity.Config
 	Mirror             mirror.Config
 }
@@ -161,7 +159,6 @@ func NewAnnotationExtractor(cfg resolver.Resolver) Extractor {
 			"XForwardedPrefix":     xforwardedprefix.NewParser(cfg),
 			"SSLCipher":            sslcipher.NewParser(cfg),
 			"Logs":                 log.NewParser(cfg),
-			"InfluxDB":             influxdb.NewParser(cfg),
 			"BackendProtocol":      backendprotocol.NewParser(cfg),
 			"ModSecurity":          modsecurity.NewParser(cfg),
 			"Mirror":               mirror.NewParser(cfg),

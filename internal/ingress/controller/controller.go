@@ -1346,7 +1346,6 @@ func locationApplyAnnotations(loc *ingress.Location, anns *annotations.Ingress) 
 	loc.UsePortInRedirects = anns.UsePortInRedirects
 	loc.Connection = anns.Connection
 	loc.Logs = anns.Logs
-	loc.InfluxDB = anns.InfluxDB
 	loc.DefaultBackend = anns.DefaultBackend
 	loc.BackendProtocol = anns.BackendProtocol
 	loc.FastCGI = anns.FastCGI

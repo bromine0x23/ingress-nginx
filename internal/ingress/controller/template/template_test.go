@@ -1218,30 +1218,6 @@ func TestProxySetHeader(t *testing.T) {
 	}
 }
 
-func TestBuildInfluxDB(t *testing.T) {
-	invalidType := &ingress.Ingress{}
-	expected := ""
-	actual := buildInfluxDB(invalidType)
-
-	if expected != actual {
-		t.Errorf("Expected '%v' but returned '%v'", expected, actual)
-	}
-
-	cfg := influxdb.Config{
-		InfluxDBEnabled:     true,
-		InfluxDBServerName:  "ok.com",
-		InfluxDBHost:        "host.com",
-		InfluxDBPort:        "5252",
-		InfluxDBMeasurement: "ok",
-	}
-	expected = "influxdb server_name=ok.com host=host.com port=5252 measurement=ok enabled=true;"
-	actual = buildInfluxDB(cfg)
-
-	if expected != actual {
-		t.Errorf("Expected '%v' but returned '%v'", expected, actual)
-	}
-}
-
 func TestBuildOpenTracing(t *testing.T) {
 	invalidType := &ingress.Ingress{}
 	expected := ""

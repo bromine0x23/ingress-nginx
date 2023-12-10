@@ -77,8 +77,6 @@ export LUA_UPSTREAM_VERSION=8aa93ead98ba2060d4efd594ae33a35d153589bf
 # Check for recent changes: https://github.com/openresty/lua-cjson/compare/2.1.0.8...openresty:master
 export LUA_CJSON_VERSION=4b350c531de3d71008c77ae94e59275b8371b4dc
 
-export NGINX_INFLUXDB_VERSION=5b09391cb7b9a889687c0aa67964c06a2d933e8b
-
 # Check for recent changes: https://github.com/leev/ngx_http_geoip2_module/compare/3.3...master
 export GEOIP2_VERSION=a26c6beed77e81553686852dceb6c7fdacc5970d
 
@@ -240,9 +238,6 @@ get_src 1ee6dad809a5bb22efb45e6dac767f7ce544ad652d353a93d7f26b605f69fe3f \
 
 get_src f29393f2cd9288105a0029a6a324fe1f7558a9e7e852d59a6355f7581bb90e30 \
         "https://github.com/DataDog/dd-opentracing-cpp/archive/$DATADOG_CPP_VERSION.tar.gz"
-
-get_src 1af5a5632dc8b00ae103d51b7bf225de3a7f0df82f5c6a401996c080106e600e \
-        "https://github.com/influxdata/nginx-influxdb-module/archive/$NGINX_INFLUXDB_VERSION.tar.gz"
 
 get_src 4c1933434572226942c65b2f2b26c8a536ab76aa771a3c7f6c2629faa764976b \
         "https://github.com/leev/ngx_http_geoip2_module/archive/$GEOIP2_VERSION.tar.gz"
@@ -593,7 +588,6 @@ WITH_MODULES=" \
   --add-module=$BUILD_PATH/stream-lua-nginx-module-$LUA_STREAM_NGX_VERSION \
   --add-module=$BUILD_PATH/lua-upstream-nginx-module-$LUA_UPSTREAM_VERSION \
   --add-dynamic-module=$BUILD_PATH/nginx-http-auth-digest-$NGINX_DIGEST_AUTH \
-  --add-dynamic-module=$BUILD_PATH/nginx-influxdb-module-$NGINX_INFLUXDB_VERSION \
   --add-dynamic-module=$BUILD_PATH/nginx-opentracing-$NGINX_OPENTRACING_VERSION/opentracing \
   --add-dynamic-module=$BUILD_PATH/ModSecurity-nginx-$MODSECURITY_VERSION \
   --add-dynamic-module=$BUILD_PATH/ngx_http_geoip2_module-${GEOIP2_VERSION} \
