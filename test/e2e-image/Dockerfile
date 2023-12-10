@@ -1,14 +1,14 @@
-FROM k8s.gcr.io/ingress-nginx/e2e-test-runner:v20210822-g5e5faa24d@sha256:55c568d9e35e15d94b3ab41fe549b8ee4cd910cc3e031ddcccd06256755c5d89 AS BASE
+FROM registry.k8s.io/ingress-nginx/e2e-test-runner:v20231011-8b53cabe0@sha256:ed0dad805c635e66469b4ac376010eebdd0b3fe62d753f58db1632d6f12f451d AS BASE
 
-FROM alpine:3.12
+FROM alpine:3.19
 
-RUN apk add -U --no-cache \
-    ca-certificates \
-    bash \
-    curl \
-    tzdata \
-    libc6-compat \
-    openssl
+RUN apk update \
+	&& apk upgrade && apk add -U --no-cache \
+  ca-certificates \
+  bash \
+  tzdata \
+  libc6-compat \
+  openssl
 
 COPY --from=BASE /go/bin/ginkgo /usr/local/bin/
 COPY --from=BASE /usr/local/bin/helm /usr/local/bin/
