@@ -37,9 +37,6 @@ const SlowEchoService = "slow-echo"
 // HTTPBinService name of the deployment for the httpbin app
 const HTTPBinService = "httpbin"
 
-// NginxBaseImage use for testing
-const NginxBaseImage = "k8s.gcr.io/ingress-nginx/nginx:5402d35663917ccbbf77ff48a22b8c6f77097f48@sha256:ec8a104df307f5c6d68157b7ac8e5e1e2c2f0ea07ddf25bb1c6c43c67e351180"
-
 // NewEchoDeployment creates a new single replica deployment of the echoserver image in a particular namespace
 func (f *Framework) NewEchoDeployment() {
 	f.NewEchoDeploymentWithReplicas(1)
@@ -127,6 +124,16 @@ http {
 	f.NGINXWithConfigDeployment(SlowEchoService, cfg)
 }
 
+func (f *Framework) GetNginxBaseImage() string {
+	nginxBaseImage := os.Getenv("NGINX_BASE_IMAGE")
+
+	if nginxBaseImage == "" {
+		assert.NotEmpty(ginkgo.GinkgoT(), errors.New("NGINX_BASE_IMAGE not defined"), "NGINX_BASE_IMAGE not defined")
+	}
+
+	return nginxBaseImage
+}
+
 // NGINXWithConfigDeployment creates an NGINX deployment using a configmap containing the nginx.conf configuration
 func (f *Framework) NGINXWithConfigDeployment(name string, cfg string) {
 	cfgMap := map[string]string{
@@ -142,7 +149,7 @@ func (f *Framework) NGINXWithConfigDeployment(name string, cfg string) {
 	}, metav1.CreateOptions{})
 	assert.Nil(ginkgo.GinkgoT(), err, "creating configmap")
 
-	deployment := newDeployment(name, f.Namespace, NginxBaseImage, 80, 1,
+	deployment := newDeployment(name, f.Namespace, f.GetNginxBaseImage(), 80, 1,
 		nil,
 		[]corev1.VolumeMount{
 			{

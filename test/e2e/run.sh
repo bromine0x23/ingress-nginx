@@ -53,6 +53,12 @@ export REGISTRY=ingress-controller
 
 export DOCKER_CLI_EXPERIMENTAL=enabled
 
+NGINX_BASE_IMAGE=$(cat $DIR/../../NGINX_BASE)
+
+echo "Running e2e with nginx base image ${NGINX_BASE_IMAGE}"
+
+export NGINX_BASE_IMAGE=$NGINX_BASE_IMAGE
+
 export KUBECONFIG="${KUBECONFIG:-$HOME/.kube/kind-config-$KIND_CLUSTER_NAME}"
 
 if [ "${SKIP_CLUSTER_CREATION:-false}" = "false" ]; then
