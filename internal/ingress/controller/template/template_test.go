@@ -965,7 +965,6 @@ func TestOpentracingPropagateContext(t *testing.T) {
 		{BackendProtocol: "AUTO_HTTP"}: "opentracing_propagate_context;",
 		{BackendProtocol: "GRPC"}:      "opentracing_grpc_propagate_context;",
 		{BackendProtocol: "GRPCS"}:     "opentracing_grpc_propagate_context;",
-		{BackendProtocol: "AJP"}:       "opentracing_propagate_context;",
 		{BackendProtocol: "FCGI"}:      "opentracing_propagate_context;",
 		nil:                            "",
 	}
