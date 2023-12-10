@@ -112,6 +112,8 @@ func NewNGINXController(config *Configuration, mc metric.Collector) *NGINXContro
 	if n.cfg.ValidationWebhook != "" {
 		n.validationWebhookServer = &http.Server{
 			Addr:      config.ValidationWebhook,
+			// G112 (CWE-400): Potential Slowloris Attack
+			ReadHeaderTimeout: 10 * time.Second,
 			Handler:   adm_controller.NewAdmissionControllerServer(&adm_controller.IngressAdmission{Checker: n}),
 			TLSConfig: ssl.NewTLSListener(n.cfg.ValidationWebhookCertPath, n.cfg.ValidationWebhookKeyPath).TLSConfig(),
 			// disable http/2
